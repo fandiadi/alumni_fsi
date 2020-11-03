@@ -42,7 +42,21 @@ class Auth extends CI_Controller
                         'role_id' => $user['role_id']
                     ];
                     $this->session->set_userdata($data);
-                    redirect('user');
+                    if ($user['role_id'] == 1) {
+                        redirect('admin');
+                    } elseif ($user['role_id'] == 2) {
+                        redirect('fakultas');
+                    } elseif ($user['role_id'] == 3) {
+                        redirect('jurusan');
+                    } elseif ($user['role_id'] == 4) {
+                        redirect('user');
+                    } elseif ($user['role_id'] == 5) {
+                        redirect('dosen');
+                    } elseif ($user['role_id'] == 6) {
+                        redirect('kajur');
+                    } else {
+                        redirect('wadek1');
+                    }
                 } else {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Password Salah!</div>');
                     redirect('auth');
@@ -93,5 +107,14 @@ class Auth extends CI_Controller
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Akun Berhasil Dibuat!</div>');
             redirect('auth');
         }
+    }
+
+    public function logout()
+    {
+        $this->session->unset_userdata('nim');
+        $this->session->unset_userdata('role_id');
+
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Berhasil Logout!</div>');
+        redirect('auth');
     }
 }
