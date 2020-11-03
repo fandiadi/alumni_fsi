@@ -24,7 +24,7 @@
                 <th scope="row"></th>
                 <td><?= $user['nim']; ?></td>
                 <td></td>
-                <td><a class="btn btn-primary" href="<?= base_url() . 'assets/khs/' . $n . '.pdf'; ?>" role="button">Link</a></td>
+                <td><a class="btn btn-primary" href="<?= base_url() . 'assets/khs/' . $n . '.pdf'; ?>" role="button">Download</a></td>
             </tr>
         </tbody>
     </table>
