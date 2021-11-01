@@ -57,6 +57,7 @@ class Surat extends CI_Controller
             'unit' => $this->input->post('unit'),
             'alamat' => $this->input->post('alamat'),
             'pihak_instansi' => $this->input->post('pihak_instansi'),
+            'p_role_id' => 1,
             'tgl_surat_p' => time()
         ];
 
@@ -68,6 +69,7 @@ class Surat extends CI_Controller
 
         $this->db->insert('tb_s_pengantar', $data);
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Berhasil Input Data!</div>');
-        redirect('surat/suratPengantar');
+
+        redirect('Pengantar/listpengantar1');
     }
 }
