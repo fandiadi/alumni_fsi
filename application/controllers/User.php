@@ -3,6 +3,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class User extends CI_Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->library('form_validation');
+        $this->load->model('ProfileModel');
+    }
+
     public function index()
     {
         $data['title'] = 'User';
@@ -13,5 +20,96 @@ class User extends CI_Controller
         $this->load->view('template/topbar', $data);
         $this->load->view('user/index', $data);
         $this->load->view('template/footer');
+    }
+
+    public function tambahdata()
+    {
+        $data['title'] = 'Tambah Data';
+        $data['user'] = $this->db->get_where('tb_user', ['nim' => $this->session->userdata('nim')])->row_array();
+
+        $this->form_validation->set_rules('nim', 'NIM', 'required|trim');
+        $this->form_validation->set_rules('thn_lulus', 'Thn Lulus', 'required|integer');
+        $this->form_validation->set_rules('ipk', 'IPK', 'required|trim');
+        $this->form_validation->set_rules('status_alumni', 'Status Alumni');
+        $this->form_validation->set_rules('status_pekerjaan', 'Status Pekerjaan');
+        $this->form_validation->set_rules('nama_instansi', 'Nama Instansi');
+        $this->form_validation->set_rules('alamat_instansi', 'Alamat Instansi');
+        $this->form_validation->set_rules('bidang_ilmu', 'Bidang Ilmu');
+        $this->form_validation->set_rules('ilmu_didapat', 'Ilmu Didapat');
+        $this->form_validation->set_rules('kritik_saran', 'Kritik Saran');
+
+        // Jika form kosong maka kembali ke halaman awal
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Tambah Data Alumni';
+            $this->load->view('template/header', $data);
+            $this->load->view('template/sidebar', $data);
+            $this->load->view('template/topbar', $data);
+            $this->load->view('user/v_tambah_data', $data);
+            $this->load->view('template/footer');
+            $this->session->set_flashdata('message', '<div class="alert alert-failed" role="alert">Harap mengisi form!</div>');
+        } else {
+            $data = [
+                'nim' => $this->input->post('nim'),
+                'thn_lulus' => $this->input->post('thn_lulus'),
+                'ipk' => $this->input->post('ipk'),
+                'status_alumni' => $this->input->post('status_alumni'),
+                'status_pekerjaan' => $this->input->post('status_pekerjaan'),
+                'nama_instansi' => $this->input->post('nama_instansi'),
+                'alamat_instansi' => $this->input->post('alamat_instansi'),
+                'bidang_ilmu' => $this->input->post('bidang_ilmu'),
+                'ilmu_didapat' => $this->input->post('ilmu_didapat'),
+                'kritik_saran' => $this->input->post('kritik_saran'),
+                'create_date' => time()
+            ];
+            $this->db->insert('tb_data_alumni', $data);
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data Berhasil ditambahkan!</div>');
+            redirect('User/ubahdata');
+        }
+    }
+
+    public function ubahdata($nim = null)
+    {
+        $data['title'] = 'Ubah Data';
+        $data['user'] = $this->db->get_where('tb_user', ['nim' => $this->session->userdata('nim')])->row_array();
+
+        $data['user1'] = $this->db->get_where('tb_data_alumni', ['nim' => $this->session->userdata('nim')])->row_array();
+
+        //$data['user1'] = $this->ProfileModel->GetData();
+
+        $this->form_validation->set_rules('nim', 'NIM', 'required|trim');
+        $this->form_validation->set_rules('thn_lulus', 'Thn Lulus', 'required|integer');
+        $this->form_validation->set_rules('ipk', 'IPK', 'required|trim|decimal');
+        $this->form_validation->set_rules('status_alumni', 'Status Alumni');
+        $this->form_validation->set_rules('status_pekerjaan', 'Status Pekerjaan');
+        $this->form_validation->set_rules('nama_instansi', 'Nama Instansi');
+        $this->form_validation->set_rules('alamat_instansi', 'Alamat Instansi');
+        $this->form_validation->set_rules('bidang_ilmu', 'Bidang Ilmu');
+        $this->form_validation->set_rules('ilmu_didapat', 'Ilmu Didapat');
+        $this->form_validation->set_rules('kritik_saran', 'Kritik Saran');
+
+        if ($this->form_validation->run() == true) {
+            $nim = $this->input->post('nim');
+            $data['thn_lulus'] = $this->input->post('thn_lulus');
+            $data['ipk'] = $this->input->post('ipk');
+            $data['status_alumni'] = $this->input->post('status_alumni');
+            $data['status_pekerjaan'] = $this->input->post('status_pekerjaan');
+            $data['nama_instansi'] = $this->input->post('nama_instansi');
+            $data['alamat_instansi'] = $this->input->post('alamat_instansi');
+            $data['bidang_ilmu'] = $this->input->post('bidang_ilmu');
+            $data['ilmu_didapat'] = $this->input->post('ilmu_didapat');
+            $data['kritik_saran'] = $this->input->post('kritik_saran');
+
+            $this->ProfileModel->update($data, $nim);
+            redirect($this);
+        } else {
+            $nim = $this->input->post('nim');
+            $data['nim'] = $this->ProfileModel->getById($nim);
+
+            $this->load->view('template/header', $data);
+            $this->load->view('template/sidebar', $data);
+            $this->load->view('template/topbar', $data);
+            $this->load->view('user/v_ubah_data', $data);
+            $this->load->view('template/footer');
+        }
     }
 }
