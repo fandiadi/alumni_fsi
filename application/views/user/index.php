@@ -18,6 +18,8 @@
                 </div>
             </div>
         </div>
+        <a class="btn btn-primary" href="<?= base_url('User/tambahdata'); ?>" role="button">Tambah Data</a>
+
     </div>
 
 </div>

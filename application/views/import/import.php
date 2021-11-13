@@ -1,28 +1,24 @@
-<!DOCTYPE html>
-<html>
+<!-- Begin Page Content -->
+<div class="container-fluid">
 
-<head>
-    <title>Import Excel CodeIgniter</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-</head>
+    <!-- Page Heading -->
+    <h1 class="h3 mb-4 text-gray-800"><?= $title; ?></h1>
 
-<body>
+    <div class="container-fluid" style="margin: auto; font-size: small;">
+        <div class="content">
+            <?php echo $this->session->flashdata('notif') ?>
+            <form method="POST" action="<?php echo base_url() ?>index.php/import/upload" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">UNGGAH FILE EXCEL</label>
+                    <input type="file" name="userfile" class="form-control">
+                </div>
 
-    <div class="container" style="margin-top: 100px">
-        <div class="row">
-            <div class="col-md-8 offset-2">
-                <?php echo $this->session->flashdata('notif') ?>
-                <form method="POST" action="<?php echo base_url() ?>index.php/import/upload" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">UNGGAH FILE EXCEL</label>
-                        <input type="file" name="userfile" class="form-control">
-                    </div>
-
-                    <button type="submit" class="btn btn-success">UPLOAD</button>
-                </form>
-            </div>
+                <button type="submit" class="btn btn-success">UPLOAD</button>
+            </form>
         </div>
-    </div>
-</body>
 
-</html>
+    </div>
+    <!-- /.container-fluid -->
+
+</div>
+<!-- End of Main Content -->
