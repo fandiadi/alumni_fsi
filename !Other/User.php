@@ -100,6 +100,7 @@ class User extends CI_Controller
             $this->load->view('template/footer');
             // $this->session->set_flashdata('message', '<div class="alert alert-failed" role="alert">Harap mengisi form!</div>');
         } else {
+
             $nim = $this->input->post('nim');
             $thn_lulus = $this->input->post('thn_lulus');
             $ipk = $this->input->post('ipk');
