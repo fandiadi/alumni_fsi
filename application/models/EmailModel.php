@@ -5,7 +5,7 @@ class EmailModel extends CI_Model
 
     public function GetUser()
     {
-        // GET USER berdasarkan role_id=2 diurut DESC dari variabel idUser
+        // GET USER
         $data = $this->db->query("SELECT * FROM tb_user WHERE role_id=2 ORDER BY `tb_user`.`idUser` DESC");
         return $data->result_array();
     }
