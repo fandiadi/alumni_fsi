@@ -35,10 +35,10 @@
 
                                 <hr>
                                 <div class="text-center">
-                                    <a class="small" href="forgot-password.html">Lupa Password?</a>
+                                    <a class="small" hidden href="forgot-password.html">Lupa Password?</a>
                                 </div>
                                 <div class="text-center">
-                                    <a class="small" href="<?= base_url('auth/registration'); ?>">Buat Akun!</a>
+                                    <a class="small" hidden href="<?= base_url('auth/registration'); ?>">Buat Akun!</a>
                                 </div>
                             </div>
                         </div>

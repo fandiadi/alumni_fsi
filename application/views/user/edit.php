@@ -51,15 +51,15 @@
         </div>
         <div class="form-group">
             <label for="exampleInputBidangIlmu">Bidang Ilmu</label>
-            <textarea class="form-control" id="bidang_ilmu" name="bidang_ilmu" placeholder="Apakah pekerjaan sekarang sesuai dengan bidang studi selama kuliah ?" value="<?php echo $user1['bidang_ilmu']; ?>"></textarea>
+            <input type="text" class="form-control" id="bidang_ilmu" name="bidang_ilmu" placeholder="Apakah pekerjaan sekarang sesuai dengan bidang studi selama kuliah ?" value="<?php echo $user1['bidang_ilmu']; ?>"></input>
         </div>
         <div class="form-group">
             <label for="exampleInputIlmuDidapat">Pemanfaatan Ilmu</label>
-            <textarea class="form-control" id="ilmu_didapat" name="ilmu_didapat" placeholder="Apakah ilmu yang didapat selama berkuliah dapat dimanfaatkan dalam bekerja ?" value="<?php echo $user1['ilmu_didapat']; ?>"></textarea>
+            <input type="text" class="form-control" id="ilmu_didapat" name="ilmu_didapat" placeholder="Apakah ilmu yang didapat selama berkuliah dapat dimanfaatkan dalam bekerja ?" value="<?php echo $user1['ilmu_didapat']; ?>"></input>
         </div>
         <div class="form-group">
             <label for="exampleInputKritikSaran">Kritik & Saran</label>
-            <textarea class="form-control" id="kritik_saran" name="kritik_saran" placeholder="Berikan kritik dan saran tentang jurusan dan juga beri komentar terkait kurikulum" value="<?php echo $user1['kritik_saran']; ?>"></textarea>
+            <input type="text" class="form-control" id="kritik_saran" name="kritik_saran" placeholder="Berikan kritik dan saran tentang jurusan dan juga beri komentar terkait kurikulum" value="<?php echo $user1['kritik_saran']; ?>"></input>
         </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>
