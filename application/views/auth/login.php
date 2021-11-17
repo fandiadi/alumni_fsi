@@ -19,7 +19,7 @@
                                 <?= $this->session->flashdata('message'); ?>
 
                                 <!-- Form Halaman Daftar -->
-                                <form class="user" method="post" action="<?= base_url('auth/'); ?>">
+                                <form class="user" method="POST" action="<?= base_url('auth/'); ?>">
                                     <div class="form-group">
                                         <input type="text" class="form-control form-control-user" id="nim" placeholder="Masukan NIM" name="nim" value="<?= set_value('nim'); ?>">
                                         <?= form_error('nim', '<small class="text-danger pl-2">', '</small>'); ?>

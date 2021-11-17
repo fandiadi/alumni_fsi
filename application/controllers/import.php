@@ -26,7 +26,6 @@ class Import extends CI_Controller
         $data['user'] = $this->db->get_where('tb_user', ['nim' => $this->session->userdata('nim')])->row_array();
         $data['user1'] = $this->ImportModel->view();
 
-
         $this->load->view('template/header', $data);
         $this->load->view('template/sidebar', $data);
         $this->load->view('template/topbar', $data);
@@ -52,7 +51,6 @@ class Import extends CI_Controller
             //upload gagal
             $this->session->set_flashdata('notif', '<div class="alert alert-danger"><b>PROSES IMPORT GAGAL!</b> ' . $this->upload->display_errors() . '</div>');
             //redirect halaman
-
 
             redirect('import/import');
         } else {
