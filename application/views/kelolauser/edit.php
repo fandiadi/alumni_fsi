@@ -14,6 +14,7 @@
             $nama = $data->nama;
             $email = $data->email;
             $jurusan = $data->jurusan;
+            $status_email = $data->status_email;
         } ?>
     </div>
     <form class="suratp" method="POST" action="<?= base_url('kelolauser/edit'); ?>">
@@ -36,6 +37,16 @@
             <label for="exampleInputJurusan">Jurusan</label>
             <input type="text" class="form-control" id="jurusan" name="jurusan" required value="<?php echo $jurusan; ?>">
             <?= form_error('jurusan', '<small class="text-danger pl-2">', '</small>'); ?>
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlSelect1">Status Alumni</label>
+            <select class="op form-control form-control-sm" id="status_email" name="status_email">
+                <?php $option = array('Terkirim', 'Belum', 'Gagal');
+                foreach ($option as $op) {
+                    $selected = $status_email == $op ? ' selected="selected"' : '';
+                    echo '<option value="' . $op . '"' . $selected . '>' . $op . '</option>';
+                } ?>
+            </select>
         </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>

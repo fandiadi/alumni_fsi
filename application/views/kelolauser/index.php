@@ -18,6 +18,7 @@
                         <th>Nama</th>
                         <th>Email</th>
                         <th>Jurusan</th>
+                        <th>Status Email</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -28,6 +29,7 @@
                             <td><?= $data->nama ?></td>
                             <td><?= $data->email ?></td>
                             <td><?= $data->jurusan ?></td>
+                            <td><?= $data->status_email ?></td>
 
                             <td class="actions">
                                 <a href="<?php echo base_url(); ?>kelolauser/edit/<?php echo $data->nim; ?>" class="btn btn-info btn-xs">Edit</a>

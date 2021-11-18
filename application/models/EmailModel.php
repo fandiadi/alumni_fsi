@@ -21,4 +21,9 @@ class EmailModel extends CI_Model
         $data = $this->db->query("SELECT * FROM tb_user WHERE role_id=2 AND status_email='Terkirim' ORDER BY `idUser` DESC");
         return $data->result_array();
     }
+
+    /*public function getUserById($nim)
+    {
+        return $this->db->get_where('tb_user', ['nim' => $nim])->row_array();
+    }*/
 }

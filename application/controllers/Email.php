@@ -30,12 +30,15 @@ class Email extends CI_Controller
     {
         $data['user'] = $this->db->get_where('tb_user', ['nim' => $this->session->userdata('nim')])->row_array();
 
-        if (isset($_POST['email_data'])) {
+        $email = $_POST['email_data'];
+        if (isset($email)) {
             $data['user1'] = $this->EmailModel->GetEmailBelumGagal();
+            //$data['user2'] = $this->EmailModel->getNIM();
             $output = '';
             $password = 123456;
 
-            foreach ($_POST['email_data'] as $row) {
+            foreach ($email as $row) {
+                $name = $row['nama'];
                 $this->load->library('PHPMailer_load'); //Load Library PHPMailer
                 $mail = $this->phpmailer_load->load(); // Mendefinisikan Variabel Mail
                 $mail->isSMTP();  // Mengirim menggunakan protokol SMTP
@@ -47,12 +50,11 @@ class Email extends CI_Controller
                 $mail->SMTPSecure = 'ssl';
                 $mail->Port = 465;
                 $mail->setFrom('admin@alumnifsi.masuk.id', 'Admin FSI Unjani'); // Sumber email
-                $mail->addAddress($row['email'], "asd"); // Masukkan alamat email dari variabel $email
-                $mail->Subject = "Data Profile Unjani"; // Subjek Email
+                $mail->addAddress($row['email'], "admin@alumnifsi.masuk.id"); // Masukkan alamat email dari variabel $email
+                $mail->Subject = "Profile Alumni Unjani"; // Subjek Email
                 $mail->msgHtml("
 			    <h3>Pemberitahuan Pengisian Data Profile Alumni</h3><hr>
-				Kepada Yth. 
-                " . $row['nama'] . "<br><br>
+				Kepada Yth. " . $name . "<br><br>
 
 				Kami memberitahukan anda untuk mengisi profile data diri alumni Universitas Jenderal Achmad Yani, dengan detail sebagai berikut: <br><br>
 				** Harap Login Melalui Link dibawah **<br>
@@ -71,17 +73,22 @@ class Email extends CI_Controller
                     $output = html_entity_decode($result['full_error']);
                 }*/
 
-                if ($result = !$mail->send()) {
+                if (!$mail->send()) {
                     echo "Mailer Error: " . $mail->ErrorInfo;
                 } else {
-                    echo "Message sent! MANTEP";
+                    $nim = $row['nim'];
+                    $status_email = "Terkirim";
+                    $this->db->set('status_email', $status_email);
+                    $this->db->where('nim', $nim);
+                    $this->db->update('tb_user');
+                    echo "Message sent!";
                 }
             }
-            if ($output == '') {
+            /*if ($output == '') {
                 echo 'ok';
             } else {
                 echo $output;
-            } // Kirim email dengan cek kondisi
+            } // Kirim email dengan cek kondisi */
         }
     }
 }

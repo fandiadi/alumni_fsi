@@ -28,6 +28,8 @@
             <input type="password" class="form-control" id="password2" hidden placeholder="Ulangi Password" name="password2">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
+        <pre></pre>
+        <a href="<?= base_url('Myprofile/ubahpassword/' . $user['nim']); ?>" class="btn btn-danger">Rubah Password</a>
     </form>
 
 

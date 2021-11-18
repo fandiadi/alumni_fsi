@@ -19,10 +19,10 @@
                     <?php $count = 1;
                     foreach ($user1 as $data) {
                         echo "<tr>";
-                        echo "<th>" . $data->nim . "</th>";
-                        echo "<th>" . $data->nama . "</th>";
-                        echo "<th>" . $data->email . "</th>";
-                        echo "<th>" . $data->jurusan . "</th>";
+                        echo "<td>" . $data->nim . "</td>";
+                        echo "<td>" . $data->nama . "</td>";
+                        echo "<td>" . $data->email . "</td>";
+                        echo "<td>" . $data->jurusan . "</td>";
                         echo "</tr>";
                     } ?>
                 </tbody>

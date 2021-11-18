@@ -81,6 +81,7 @@ class Import extends CI_Controller
                         'date_created' => time(),
                         'role_id' => 2,
                         'is_active' => 1,
+                        'status_email' => "Belum"
                     ));
                 }
                 $numrow++;

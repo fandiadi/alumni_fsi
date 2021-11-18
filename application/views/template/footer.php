@@ -24,12 +24,12 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Anda yakin ingin keluar?</h5>
                             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">×</span>
                             </button>
                         </div>
-                        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                        <div class="modal-body">Pilih "Logout" untuk mengakhiri sesi dan keluar.</div>
                         <div class="modal-footer">
                             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                             <a class="btn btn-primary" href="<?= base_url('auth/logout'); ?>">Logout</a>
@@ -68,18 +68,75 @@
             <script type="text/javascript">
                 $(document).ready(function() {
                     $('#myTable').DataTable();
-                    responsive: true;
-                    fontsize: small;
+                    fontSize: small;
+                });
+
+                $(document).ready(function() {
+                    $('#myTable3').DataTable();
+                    // dom: 'Bfrtip';
+                    dom: 'Bfrtip';
+                    fontSize: small;
+                    autoWidth: true;
+                    buttons: [{
+                            extend: "copy",
+                            className: "btn-sm"
+                        },
+                        {
+                            extend: "csv",
+                            className: "btn-sm"
+                        },
+                        {
+                            extend: "excelHtml5",
+                            className: "btn-sm"
+                        },
+                        {
+                            extend: "pdfHtml5",
+                            className: "btn-sm",
+                            pageSize: 'A3',
+                            fontSize: '14',
+                            orientation: 'landscape'
+                        },
+                    ]
                 });
 
                 $(document).ready(function() {
                     $('#myTable2').DataTable({
-                        dom: 'Bfrtip',
-                        buttons: [
-                            'copy', 'csv', 'excel', 'pdf', 'print'
+                        "lengthMenu": [
+                            [10, 25, 50, -1],
+                            [10, 25, 50, "All"]
                         ],
-                        paging: true,
-                        fixedHeader: false,
+                        dom: 'Bfrltip',
+
+
+                        autoWidth: true,
+
+                        buttons: [{
+                                extend: "copy",
+                                className: "btn-sm"
+                            },
+                            {
+                                extend: "csv",
+                                className: "btn-sm"
+                            },
+                            {
+                                extend: "excelHtml5",
+                                className: "btn-sm"
+                            },
+                            {
+                                extend: "pdfHtml5",
+                                className: "btn-sm",
+                                pageSize: 'A4',
+                                fontSize: '14',
+                                orientation: 'landscape'
+                            },
+                        ],
+                        /*lengthMenu: [
+                            [10, 25, 50, -1],
+                            ['10 rows', '25 rows', '50 rows', 'Show all']
+                        ],
+                        buttons: [
+                            'pageLength'
+                        ],*/
                     });
                 });
             </script>

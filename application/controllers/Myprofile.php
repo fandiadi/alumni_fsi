@@ -69,4 +69,32 @@ class Myprofile extends CI_Controller
             redirect('Myprofile/editprofile');
         }
     }
+    public function ubahpassword()
+    {
+        $data['title'] = 'Ubah Password';
+        $data['user'] = $this->db->get_where('tb_user', ['nim' => $this->session->userdata('nim')])->row_array();
+        //$data['user1'] = $this->MyProfileModel->GetUser();
+
+        $this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[4]|matches[password2]', [
+            'matches' => 'Password Tidak Sama!',
+            'min_length' => 'Password Terlalu Pendek!'
+        ]);
+        $this->form_validation->set_rules('password2', 'Password', 'required|trim|matches[password1]');
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('template/header', $data);
+            $this->load->view('template/sidebar', $data);
+            $this->load->view('template/topbar', $data);
+            $this->load->view('auth/ubah_password', $data);
+            $this->load->view('template/footer');
+        } else {
+            $nim = $this->input->post('nim');
+            $password = password_hash($this->input->post('password1'), PASSWORD_DEFAULT);
+            $this->db->set('password', $password);
+            $this->db->where('nim', $nim);
+            $this->db->update('tb_user');
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Password Berhasil Dirubah!</div>');
+            redirect('Myprofile/ubahpassword');
+        }
+    }
 }

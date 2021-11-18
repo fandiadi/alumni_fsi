@@ -18,8 +18,7 @@
                 </div>
             </div>
         </div>
-        <a class="btn btn-primary" href="<?= base_url('User/tambahdata'); ?>" role="button">Tambah Data</a>
-
+        <a class="btn btn-primary" hidden href="<?= base_url('User/tambahdata'); ?>" role="button">Tambah Data</a>
     </div>
 
 </div>

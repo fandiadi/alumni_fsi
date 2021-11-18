@@ -32,8 +32,6 @@
             <?= form_error('jurusan', '<small class="text-danger pl-2">', '</small>'); ?>
         </div>
 
-
-
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 

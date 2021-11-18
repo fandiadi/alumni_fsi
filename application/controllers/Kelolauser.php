@@ -31,8 +31,8 @@ class Kelolauser extends CI_Controller
             'is_unique' => 'NIM ini sudah terdaftar!'
         ]);
         $this->form_validation->set_rules('nama', 'Nama', 'required');
-        $this->form_validation->set_rules('email', 'Email', 'required|trim');
-        $this->form_validation->set_rules('Jurusan', 'Jurusan');
+        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
+        $this->form_validation->set_rules('jurusan', 'Jurusan');
         $this->form_validation->set_rules('status_pekerjaan', 'Status Pekerjaan');
         $this->form_validation->set_rules('nama_instansi', 'Nama Instansi');
         $this->form_validation->set_rules('alamat_instansi', 'Alamat Instansi');
@@ -84,8 +84,9 @@ class Kelolauser extends CI_Controller
             'required' => 'Anda belum mengisi data!'
         ]);
         $this->form_validation->set_rules('nama', 'Nama', 'required');
-        $this->form_validation->set_rules('email', 'Email', 'required|trim');
+        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
         $this->form_validation->set_rules('jurusan', 'Jurusan', 'required|trim');
+        $this->form_validation->set_rules('status_email', 'StatusEmail', 'required|trim');
 
 
         if ($this->form_validation->run() == false) {
@@ -101,12 +102,14 @@ class Kelolauser extends CI_Controller
             $nama = $this->input->post('nama');
             $email = $this->input->post('email');
             $jurusan = $this->input->post('jurusan');
+            $status_email = $this->input->post('status_email');
 
             $data = array(
                 'nim' => $nim,
                 'nama' => $nama,
                 'email' => $email,
-                'jurusan' => $jurusan
+                'jurusan' => $jurusan,
+                'status_email' => $status_email
             );
             // $this->db->set('nim', $nim);
             // $this->db->set('nama', $nama);

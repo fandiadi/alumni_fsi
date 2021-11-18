@@ -14,6 +14,7 @@ class User extends CI_Controller
     {
         $data['title'] = 'User';
         $data['user'] = $this->db->get_where('tb_user', ['nim' => $this->session->userdata('nim')])->row_array();
+        $data['user1'] = $this->db->get_where('tb_data_alumni', ['nim' => $this->session->userdata('nim')])->row_array();
 
         $this->load->view('template/header', $data);
         $this->load->view('template/sidebar', $data);
@@ -24,13 +25,17 @@ class User extends CI_Controller
 
     public function tambahdata()
     {
-        $data['title'] = 'Tambah Data';
+        $data['title'] = 'Isi Data Alumni';
         $data['user'] = $this->db->get_where('tb_user', ['nim' => $this->session->userdata('nim')])->row_array();
+        $data['user1'] = $this->db->get_where('tb_data_alumni', ['nim' => $this->session->userdata('nim')])->row_array();
+
 
         $this->form_validation->set_rules('nim', 'NIM', 'required|trim|is_unique[tb_data_alumni.nim]', [
-            'is_unique' => 'Anda sudah mengisi data!'
+            'is_unique' => 'Anda sudah pernah mengisi data! Silahkan masuk ke menu Edit Profile'
         ]);
-        $this->form_validation->set_rules('thn_lulus', 'Thn Lulus', 'required|integer');
+        $this->form_validation->set_rules('thn_lulus', 'Thn Lulus', 'required');
+        $this->form_validation->set_rules('thn_kerja', 'Thn Kerja', 'trim');
+        $this->form_validation->set_rules('bln_kerja', 'Bln Kerja', 'trim');
         $this->form_validation->set_rules('ipk', 'IPK', 'required|trim');
         $this->form_validation->set_rules('status_alumni', 'Status Alumni');
         $this->form_validation->set_rules('status_pekerjaan', 'Status Pekerjaan');
@@ -42,7 +47,7 @@ class User extends CI_Controller
 
         // Jika form kosong maka kembali ke halaman awal
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Tambah Data Alumni';
+            $data['title'] = 'Isi Data Alumni';
             $this->load->view('template/header', $data);
             $this->load->view('template/sidebar', $data);
             $this->load->view('template/topbar', $data);
@@ -53,6 +58,8 @@ class User extends CI_Controller
             $data = [
                 'nim' => $this->input->post('nim'),
                 'thn_lulus' => $this->input->post('thn_lulus'),
+                'thn_kerja' => $this->input->post('thn_kerja'),
+                'bln_kerja' => $this->input->post('bln_kerja'),
                 'ipk' => $this->input->post('ipk'),
                 'status_alumni' => $this->input->post('status_alumni'),
                 'status_pekerjaan' => $this->input->post('status_pekerjaan'),
@@ -65,7 +72,7 @@ class User extends CI_Controller
             ];
             $this->db->insert('tb_data_alumni', $data);
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data Berhasil ditambahkan!</div>');
-            redirect('User');
+            redirect('User/edit');
         }
     }
 
@@ -81,7 +88,9 @@ class User extends CI_Controller
         $this->form_validation->set_rules('nim', 'NIM', 'required|trim[tb_data_alumni.nim]', [
             'required' => 'Anda belum mengisi data!'
         ]);
-        $this->form_validation->set_rules('thn_lulus', 'Thn Lulus', 'required|integer');
+        $this->form_validation->set_rules('thn_lulus', 'Thn Lulus', 'required');
+        $this->form_validation->set_rules('thn_kerja', 'Thn Kerja', 'trim');
+        $this->form_validation->set_rules('bln_kerja', 'Bln Kerja', 'trim');
         $this->form_validation->set_rules('ipk', 'IPK', 'required|trim|decimal');
         $this->form_validation->set_rules('status_alumni', 'Status Alumni');
         $this->form_validation->set_rules('status_pekerjaan', 'Status Pekerjaan');
@@ -102,6 +111,8 @@ class User extends CI_Controller
         } else {
             $nim = $this->input->post('nim');
             $thn_lulus = $this->input->post('thn_lulus');
+            $thn_kerja = $this->input->post('thn_kerja');
+            $bln_kerja = $this->input->post('bln_kerja');
             $ipk = $this->input->post('ipk');
             $status_alumni = $this->input->post('status_alumni');
             $status_pekerjaan = $this->input->post('status_pekerjaan');
@@ -110,8 +121,11 @@ class User extends CI_Controller
             $bidang_ilmu = $this->input->post('bidang_ilmu');
             $ilmu_didapat = $this->input->post('ilmu_didapat');
             $kritik_saran = $this->input->post('kritik_saran');
+            $update_date = time();
 
             $this->db->set('thn_lulus', $thn_lulus);
+            $this->db->set('thn_kerja', $thn_kerja);
+            $this->db->set('bln_kerja', $bln_kerja);
             $this->db->set('ipk', $ipk);
             $this->db->set('status_alumni', $status_alumni);
             $this->db->set('status_pekerjaan', $status_pekerjaan);
@@ -120,6 +134,7 @@ class User extends CI_Controller
             $this->db->set('bidang_ilmu', $bidang_ilmu);
             $this->db->set('ilmu_didapat', $ilmu_didapat);
             $this->db->set('kritik_saran', $kritik_saran);
+            $this->db->set('update_date', $update_date);
             $this->db->where('nim', $nim);
             $this->db->update('tb_data_alumni');
 

@@ -44,7 +44,7 @@
                         <th>Jurusan</th>
                         <th>Data ditambahkan</th>
                         <th>Status Email</th>
-                        <th></th>
+                        <th><input type="checkbox" onClick="toggle(this)" /> Select All<br /></th>
                         <th><button type="button" name="bulk_email" class="btn btn-info email_button" id="bulk_email" data-action="bulk">Send Bulk</button></th>
                     </tr>
                 </tfoot>
@@ -107,4 +107,12 @@
 
         });
     });
+</script>
+<script language="JavaScript">
+    function toggle(source) {
+        checkboxes = document.getElementsByName('single_select');
+        for (var i = 0, n = checkboxes.length; i < n; i++) {
+            checkboxes[i].checked = source.checked;
+        }
+    }
 </script>
