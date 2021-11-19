@@ -30,31 +30,34 @@ class Email extends CI_Controller
     {
         $data['user'] = $this->db->get_where('tb_user', ['nim' => $this->session->userdata('nim')])->row_array();
 
-        $email = $_POST['email_data'];
-        if (isset($email)) {
+
+        if (isset($_POST['email_data'])) {
             $data['user1'] = $this->EmailModel->GetEmailBelumGagal();
             //$data['user2'] = $this->EmailModel->getNIM();
             $output = '';
             $password = 123456;
 
-            foreach ($email as $row) {
-                $name = $row['nama'];
+            foreach ($_POST['email_data'] as $row) {
                 $this->load->library('PHPMailer_load'); //Load Library PHPMailer
                 $mail = $this->phpmailer_load->load(); // Mendefinisikan Variabel Mail
                 $mail->isSMTP();  // Mengirim menggunakan protokol SMTP
                 $mail->SMTPDebug = SMTP::DEBUG_SERVER;
-                $mail->Host = 'mail.alumnifsi.masuk.id'; // Host dari server SMTP
+                $mail->Host = 'smtp.gmail.com'; // Host dari server SMTP
+                //$mail->Host = 'mail.alumnifsi.masuk.id'; // Host dari server SMTP
                 $mail->SMTPAuth = true; // Autentikasi SMTP
-                $mail->Username = 'admin@alumnifsi.masuk.id';
+                //$mail->Username = 'fsi_alumni@alumnifsi.masuk.id';
+                $mail->Username = 'fandiadi@student.unjani.ac.id';
                 $mail->Password = 'qwerty8869po';
-                $mail->SMTPSecure = 'ssl';
-                $mail->Port = 465;
-                $mail->setFrom('admin@alumnifsi.masuk.id', 'Admin FSI Unjani'); // Sumber email
-                $mail->addAddress($row['email'], "admin@alumnifsi.masuk.id"); // Masukkan alamat email dari variabel $email
+                //$mail->SMTPSecure = 'ssl';
+                $mail->SMTPSecure = 'tsl';
+                //$mail->Port = 465;
+                $mail->Port = 587;
+                $mail->setFrom('fsi_alumni@alumnifsi.masuk.id', 'Admin FSI Unjani'); // Sumber email
+                $mail->addAddress($row['email'], $row['nama']); // Masukkan alamat email dari variabel $email
                 $mail->Subject = "Profile Alumni Unjani"; // Subjek Email
                 $mail->msgHtml("
 			    <h3>Pemberitahuan Pengisian Data Profile Alumni</h3><hr>
-				Kepada Yth. " . $name . "<br><br>
+				Kepada Yth. " . $row['nama'] . "<br><br>
 
 				Kami memberitahukan anda untuk mengisi profile data diri alumni Universitas Jenderal Achmad Yani, dengan detail sebagai berikut: <br><br>
 				** Harap Login Melalui Link dibawah **<br>
