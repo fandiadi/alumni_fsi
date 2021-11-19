@@ -78,7 +78,7 @@ class User extends CI_Controller
 
     public function edit()
     {
-        $data['title'] = 'Edit Profile';
+        $data['title'] = 'Edit Data Alumni';
         $data['user'] = $this->db->get_where('tb_user', ['nim' => $this->session->userdata('nim')])->row_array();
 
         $data['user1'] = $this->db->get_where('tb_data_alumni', ['nim' => $this->session->userdata('nim')])->row_array();
@@ -101,7 +101,7 @@ class User extends CI_Controller
         $this->form_validation->set_rules('kritik_saran', 'Kritik Saran');
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Edit Profile';
+            $data['title'] = 'Edit Data Alumni';
             $this->load->view('template/header', $data);
             $this->load->view('template/sidebar', $data);
             $this->load->view('template/topbar', $data);

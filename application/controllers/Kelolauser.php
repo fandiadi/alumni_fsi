@@ -74,7 +74,7 @@ class Kelolauser extends CI_Controller
     }
     public function edit($nim)
     {
-        $data['title'] = 'Edit Profile';
+        $data['title'] = 'Edit User Profile';
         $data['user'] = $this->db->get_where('tb_user', ['nim' => $this->session->userdata('nim')])->row_array();
         $data['user1'] = $this->KelolauserModel->edit($nim);
 
@@ -90,7 +90,7 @@ class Kelolauser extends CI_Controller
 
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Edit Profile';
+            $data['title'] = 'Edit User';
             $this->load->view('template/header', $data);
             $this->load->view('template/sidebar', $data);
             $this->load->view('template/topbar', $data);
