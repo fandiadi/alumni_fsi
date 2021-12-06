@@ -33,10 +33,16 @@
             <input type="text" class="form-control" id="email" name="email" required value="<?php echo $email; ?>">
             <?= form_error('email', '<small class="text-danger pl-2">', '</small>'); ?>
         </div>
+        
         <div class="form-group">
-            <label for="exampleInputJurusan">Jurusan</label>
-            <input type="text" class="form-control" id="jurusan" name="jurusan" required value="<?php echo $jurusan; ?>">
-            <?= form_error('jurusan', '<small class="text-danger pl-2">', '</small>'); ?>
+                <label for="exampleFormControlSelect1">Jurusan</label>
+                <select class="op form-control form-control-sm" id="jurusan" name="jurusan">
+                    <?php $option = array('Informatika', 'Kimia');
+                    foreach ($option as $op) {
+                        $selected = $jurusan == $op ? ' selected="selected"' : '';
+                        echo '<option value="' . $op . '"' . $selected . '>' . $op . '</option>';
+                    } ?>
+                </select>
         </div>
         <div class="form-group">
             <label for="exampleFormControlSelect1">Status Alumni</label>

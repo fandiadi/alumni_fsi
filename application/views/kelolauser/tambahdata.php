@@ -27,10 +27,12 @@
             <?= form_error('email', '<small class="text-danger pl-2">', '</small>'); ?>
         </div>
         <div class="form-group">
-            <label for="exampleInputJurusan">Jurusan</label>
-            <input type="text" class="form-control" id="jurusan" name="jurusan">
-            <?= form_error('jurusan', '<small class="text-danger pl-2">', '</small>'); ?>
-        </div>
+                <label for="exampleFormControlSelect1">Jurusan</label>
+                <select class="form-control form-control-sm" id="jurusan" name="jurusan">
+                    <option value="Informatika">Informatika</option>
+                    <option value="Kimia">Kimia</option>
+                </select>
+            </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>

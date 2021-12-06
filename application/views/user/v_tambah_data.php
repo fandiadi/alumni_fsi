@@ -17,12 +17,12 @@
                 <input type="number" class="form-control form-control-sm" id="nim" name="nim" readonly value="<?php echo $user['nim']; ?>">
                 <?= form_error('nim', '<small class="text-danger pl-2">', '</small>'); ?>
             </div>
-            <div class="form-group">
+            <div class="form-group" hidden>
                 <label for="exampleInputIPK">IPK</label>
                 <input type="text" class="form-control form-control-sm" id="ipk" placeholder="0.00" name="ipk">
                 <?= form_error('ipk', '<small class="text-danger pl-2">', '</small>'); ?>
             </div>
-            <div class="form-group">
+            <div class="form-group" hidden>
                 <label for="exampleFormControlSelect1">Tahun Lulus</label>
                 <select class="form-control form-control-sm" id="thn_lulus" name="thn_lulus">
                     <?php $option = array(
