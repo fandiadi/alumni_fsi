@@ -17,50 +17,6 @@
                 <input type="number" class="form-control form-control-sm" id="nim" name="nim" readonly value="<?php echo $user['nim']; ?>">
                 <?= form_error('nim', '<small class="text-danger pl-2">', '</small>'); ?>
             </div>
-            <div class="form-group" hidden>
-                <label for="exampleInputIPK">IPK</label>
-                <input type="text" class="form-control form-control-sm" id="ipk" placeholder="0.00" name="ipk">
-                <?= form_error('ipk', '<small class="text-danger pl-2">', '</small>'); ?>
-            </div>
-            <div class="form-group" hidden>
-                <label for="exampleFormControlSelect1">Tahun Lulus</label>
-                <select class="form-control form-control-sm" id="thn_lulus" name="thn_lulus">
-                    <?php $option = array(
-                        '1992/1993',
-                        '1993/1994',
-                        '1994/1995',
-                        '1995/1996',
-                        '1996/1997',
-                        '1997/1998',
-                        '1998/1999',
-                        '1999/2000',
-                        '2000/2001',
-                        '2001/2002',
-                        '2002/2003',
-                        '2003/2004',
-                        '2004/2005',
-                        '2005/2006',
-                        '2006/2007',
-                        '2007/2008',
-                        '2009/2010',
-                        '2011/2012',
-                        '2012/2013',
-                        '2013/2014',
-                        '2014/2015',
-                        '2015/2016',
-                        '2016/2017',
-                        '2017/2018',
-                        '2018/2019',
-                        '2019/2020',
-                        '2020/2021',
-                        '2021/2022'
-                    );
-                    foreach ($option as $op) {
-                        $selected = $user1['thn_lulus'] == $op ? ' selected="selected"' : '';
-                        echo '<option value="' . $op . '"' . $selected . '>' . $op . '</option>';
-                    } ?>
-                </select>
-            </div>
 
             <div class="form-group">
                 <label for="exampleFormControlSelect1">Status Alumni</label>
