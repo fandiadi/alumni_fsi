@@ -11,10 +11,10 @@ Faculty Information System to record alumni after graduating from university
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 <p float="center">
-  <img src="https://github.com/fandiadi/alumni_fsi/blob/master/images/Home.png" width="720" height="400">
-  <img src="https://github.com/fandiadi/alumni_fsi/blob/master/images/KelolaDataAlumni.png" width="720" height="400">
-  <img src="https://github.com/fandiadi/alumni_fsi/blob/master/images/KelolaUser.png" width="720" height="400">
-  <img src="https://github.com/fandiadi/alumni_fsi/blob/master/images/KirimEmail.png" width="720" height="400">
+  <img src="https://github.com/fandiadi/alumni_fsi/blob/master/images/Home.png" width="800" height="400">
+  <img src="https://github.com/fandiadi/alumni_fsi/blob/master/images/KelolaDataAlumni.png" width="800" height="400">
+  <img src="https://github.com/fandiadi/alumni_fsi/blob/master/images/KelolaUser.png" width="800" height="400">
+  <img src="https://github.com/fandiadi/alumni_fsi/blob/master/images/KirimEmail.png" width="800" height="400">
 </p>
 
 This system works in a way that the admin sends an email to students who are registered and have graduated, then students will be sent a link to the system where later students are required to fill in the conditions of their personal data after graduation. Does the student already have a job or not? if it is already working, fill in the data where it works, and various other inputs.
